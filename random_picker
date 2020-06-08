@@ -1,0 +1,45 @@
+#! /usr/bin/env python3
+
+##Made^by^DevilD - DevilsCake
+
+import random
+
+#Input Files
+################################################
+file1 = open('test.txt','r')
+################################################
+
+#Output Files
+################################################
+file2 = open('test_random.txt','a')
+file3 = open('test_remaining.txt','a')
+################################################
+
+lines = file1.readlines()
+
+length = len(lines)
+
+if(lines[length-1].find('\n')==-1):
+	lines[length-1] = lines[length-1] + '\n'
+
+print('\n[+] Total no. of lines : ' + str(length) + '\n')
+
+n = int(input('[+] Enter no. of lines to be picked randomly : '))
+
+if(n>length):
+	print('\n[+] No. of lines should be less than total no. of lines. \n')
+	exit()
+
+while(n):
+	n = n - 1
+	temp = random.randint(0,length-1)
+	file2.write(lines[temp])
+	del lines[temp]
+	length = length - 1
+
+for data in lines:
+	file3.write(data)
+
+print('\n[+] Successfully Completed :) \n')
+
+temp = input('Press any key to exit.')
